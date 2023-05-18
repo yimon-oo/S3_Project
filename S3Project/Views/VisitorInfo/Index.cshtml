@@ -1,0 +1,49 @@
+﻿@model IEnumerable<S3Project.Models.VisitorInfoListViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card-header">
+    <a href="@Url.Action("Create", "VisitorInfo")?isModel=false" class="btn btn-sm btn-info waves-effect waves-light" style="color:#fff;">အသစ်ထည့်မည်</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="text-align:left">Action</th>
+            <th> Name </th>
+            <th> Business Email </th>
+            <th> Company Name </th>
+            <th> Designation </th>
+            <th> Business Number </th>
+            <th> License Plate </th>
+            <th> NRIC/ FIN Number </th>
+            <th> Stay Home Notice </th>
+            <th> Close Contact </th>
+            <th> Any Fever </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+                <td width="140px">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-sm btn-outline-info" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id}, new { @class = "btn btn-sm btn-outline-danger", onclick = "return confirm('Are you sure');" })
+                </td>
+            <td> @item.Name </td>
+            <td> @item.email </td>
+            <td> @item.company_name </td>
+            <td> @item.designation </td>
+            <td> @item.mobile </td>
+            <td> @item.license_plate </td>
+            <td> @item.nric_fin </td>
+            <td> @item.issh_notice </td>
+            <td> @item.isclose_contact </td>
+            <td> @item.isfever </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

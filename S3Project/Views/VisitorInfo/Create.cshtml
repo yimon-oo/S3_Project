@@ -1,0 +1,134 @@
+﻿@model S3Project.Entities.Visitor_Info
+
+@{
+    ViewData["Title"] = "Visitor Information";
+}
+
+@*<h1>Create</h1>*@
+
+<h4>Please fill the Visitor Information Form</h4>
+<hr />
+
+<div class="row">
+    <form asp-action="Create">
+    <div class="row">    
+    <div class="col-md-6">        
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <div class="form-group">
+                    <label>* Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>   
+            <div class="form-group">
+                    <label>* Company Name</label>
+                <input asp-for="company_name" class="form-control" />
+                <span asp-validation-for="company_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <label>* Business Number</label>
+                <input asp-for="mobile" class="form-control" />
+                <span asp-validation-for="mobile" class="text-danger"></span>
+            </div>
+       
+    </div>
+    <div class="col-md-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                    <label>* Business Email</label>
+                @*<label asp-for="email" class="control-label"></label>*@
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <label>* Designation</label>
+                <input asp-for="designation" class="form-control" />
+                <span asp-validation-for="designation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <label>* License Plate</label>
+                <input asp-for="license_plate" class="form-control" />
+                <span asp-validation-for="license_plate" class="text-danger"></span>
+            </div>
+    </div>
+
+</div>
+    <div class="row">
+        <div class="col-md-12">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label>NRIC/FIN Number (last 4 character) *</label>
+                    <input asp-for="nric_fin" class="form-control" />
+                    <span asp-validation-for="nric_fin" class="text-danger"></span>
+                </div>
+                @*<div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="issh_notice" /> @Html.DisplayNameFor(model => model.issh_notice)
+                    </label>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="isclose_contact" /> @Html.DisplayNameFor(model => model.isclose_contact)
+                    </label>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="isfever" /> @Html.DisplayNameFor(model => model.isfever)
+                    </label>
+                </div>*@
+                <div class="form-row">
+                    <label>1. Are you currently under a Quarantine Order, Stay-Home Notice?</label>
+                    <div class="input-group">
+                        @Html.RadioButtonFor(m => m.isclose_contact, true) &nbsp; Yes &nbsp; &nbsp;
+                        @Html.RadioButtonFor(m => m.isclose_contact, false) &nbsp; No
+                        @*@Html.RadioButtonFor(m => m.isclose_contact, true, Model.isclose_contact == true ? new { Checked = "checked" } : null) &nbsp; ကြိုတင် &nbsp; &nbsp;
+                        @Html.RadioButtonFor(m => m.isclose_contact, false, Model.isclose_contact == false ? new { Checked = "checked" } : null) &nbsp; တုံ့ပြန်*@
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label>2. Have you had close contact with a confirmed COVID-19 case in the past 14 day?</label>
+                    <div class="input-group">
+                        @Html.RadioButtonFor(m => m.isclose_contact, true) &nbsp; Yes &nbsp; &nbsp;
+                        @Html.RadioButtonFor(m => m.isclose_contact, false) &nbsp; No
+                        @*@Html.RadioButtonFor(m => m.isclose_contact, true, Model.isclose_contact == true ? new { Checked = "checked" } : null) &nbsp; ကြိုတင် &nbsp; &nbsp;
+                        @Html.RadioButtonFor(m => m.isclose_contact, false, Model.isclose_contact == false ? new { Checked = "checked" } : null) &nbsp; တုံ့ပြန်*@
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label>3. Do you have any fever or flu-like symptoms?</label>
+                    <div class="input-group">
+                        @Html.RadioButtonFor(m => m.isclose_contact, true) &nbsp; Yes &nbsp; &nbsp;
+                        @Html.RadioButtonFor(m => m.isclose_contact, false) &nbsp; No
+                        @*@Html.RadioButtonFor(m => m.isclose_contact, true, Model.isclose_contact == true ? new { Checked = "checked" } : null) &nbsp; ကြိုတင် &nbsp; &nbsp;
+                        @Html.RadioButtonFor(m => m.isclose_contact, false, Model.isclose_contact == false ? new { Checked = "checked" } : null) &nbsp; တုံ့ပြန်*@
+                    </div>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="isclose_contact" /> By Completing this online form, I acknowledge and consent to the collection,
+                        use and disclosure of my personal data for security verification, access control and safety purpose.
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-6">
+                        <button type="submit" id="save" class="btn btn-sm btn-outline-info">Submit</button>
+                    </div>
+                </div>
+        </div>
+
+</div>
+    </form>
+</div>
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
