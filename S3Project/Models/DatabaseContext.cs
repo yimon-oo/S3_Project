@@ -12,14 +12,10 @@ namespace S3Project.Models
         {
         }
 
-        public DbSet<Visitor_Info> VisitorInfo { get; set; } = null!;
-        public DbSet<Information> Information { get; set; } = null!;
+        public DbSet<Visitor_Info> VisitorInfo { get; set; }
+        public DbSet<Information> Information { get; set; }
 
-        public DbSet<Data> Data { get; set; } = null!;
-        public DbSet<User> User { get; set; } = null!; 
-
-        //public DbSet<S3Project.Models.VisitorInfoListViewModel>? VisitorInfoList { get; set; }
-
-        //public DbSet<S3Project.Models.LoginViewModel>? LoginViewModel { get; set; }
+        public DbSet<Data> Data { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }

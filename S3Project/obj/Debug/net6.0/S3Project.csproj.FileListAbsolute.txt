@@ -278,6 +278,7 @@ D:\ymo\S3_Project\S3Project\bin\Debug\net6.0\S3Project.runtimeconfig.json
 D:\ymo\S3_Project\S3Project\bin\Debug\net6.0\S3Project.dll
 D:\ymo\S3_Project\S3Project\bin\Debug\net6.0\S3Project.pdb
 D:\ymo\S3_Project\S3Project\bin\Debug\net6.0\Humanizer.dll
+D:\ymo\S3_Project\S3Project\bin\Debug\net6.0\log4net.dll
 D:\ymo\S3_Project\S3Project\bin\Debug\net6.0\MessagePack.dll
 D:\ymo\S3_Project\S3Project\bin\Debug\net6.0\MessagePack.Annotations.dll
 D:\ymo\S3_Project\S3Project\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
