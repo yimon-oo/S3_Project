@@ -7,11 +7,17 @@ namespace S3Project.Models
     {
         public int id { get; set; }
 
-        //[Column(TypeName = "ID")]
+        [Required(ErrorMessage = "This is required")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "This is required")]
         public string email { get; set; }
+
+        [Required(ErrorMessage = "This is required")]
         public string company_name { get; set; }
         public string designation { get; set; }
+
+        [Required(ErrorMessage = "This is required")]
         public string mobile { get; set; }
         public string license_plate { get; set; }
         public string nric_fin { get; set; }

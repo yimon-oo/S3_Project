@@ -22,6 +22,23 @@ namespace S3Project.Mappers
             return visitorinfo;
         }
 
+        public VisitorInfoViewModel MapEntityToModel(Visitor_Info visitorinfo)
+        {
+            VisitorInfoViewModel model = new VisitorInfoViewModel();
+            model.id = visitorinfo.id;
+            model.Name = visitorinfo.Name;
+            model.email = visitorinfo.email;
+            model.company_name = visitorinfo.company_name;
+            model.designation = visitorinfo.designation;
+            model.mobile = visitorinfo.mobile;
+            model.license_plate = visitorinfo.license_plate;
+            model.nric_fin = visitorinfo.nric_fin;
+            model.issh_notice = visitorinfo.issh_notice;
+            model.isclose_contact = visitorinfo.isclose_contact;
+            model.isfever = visitorinfo.isfever;
+            return model;
+        }
+
         public List<VisitorInfoListViewModel> MapEntityToListViewModel(List<Visitor_Info> list)
         {
             List<VisitorInfoListViewModel> vmlist = new List<VisitorInfoListViewModel>();

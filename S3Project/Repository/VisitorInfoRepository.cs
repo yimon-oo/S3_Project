@@ -1,4 +1,5 @@
-﻿using S3Project.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using S3Project.Entities;
 using S3Project.Models;
 
 namespace S3Project.IRepository
@@ -13,14 +14,24 @@ namespace S3Project.IRepository
         }
         public int CreateOrUpdate(Visitor_Info VisitorInfo)
         {
-            context.VisitorInfo.Add(VisitorInfo);
-            context.SaveChanges();
-            return VisitorInfo.id;
+            if (VisitorInfo.id > 0)
+            {
+                context.VisitorInfo.Attach(VisitorInfo);
+                context.Entry(VisitorInfo).State = EntityState.Modified;
+                context.VisitorInfo.Update(VisitorInfo);
+            }
+            else
+            {
+                context.VisitorInfo.Add(VisitorInfo);
+            }
+            var result = context.SaveChanges();
+            //return VisitorInfo.id;
+            return result;
         }
 
         public int Delete(int id)
         {
-            var data = context.VisitorInfo.Find(id);
+            var data = context.VisitorInfo.Where(x => x.id == id).FirstOrDefault();
             context.VisitorInfo.Remove(data);
             var result = context.SaveChanges();
             return result;

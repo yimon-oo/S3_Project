@@ -2,64 +2,43 @@
 
 @{
     ViewData["Title"] = "Login";
+    Layout = "";
 }
-@*
-<h1>Login</h1>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/S3Project.styles.css" asp-append-version="true" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/
+/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
 
-<h4>LoginViewModel</h4>*@
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        @*<form asp-action="Login">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Cancel" class="btn btn-primary" />
-            </div>
-        </form>*@
-
-        @*Login Form Start*@
-        <section id="loginForm">
+<div>
+    <div class="container-login">
+       
+            <div class="row">                
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
             {        @*Html.AntiForgeryToken()*@
                 @*<span style="color:red;">@Html.ValidationSummary(true)</span>*@
-                <div class="form-group">
-                    <span style="color:indianred">@Html.ValidationMessageFor(m => m.UserName)</span>
+                <div class="mb-3">
                     <span class="">Username</span>
-                    @Html.TextBoxFor(m => m.UserName, new { @class = "input100", @placeholder = "Enter username" })
-                    <span class=""></span>
-
+                    @Html.TextBoxFor(m => m.UserName, new { @class="form-control"})
+                    <span style="color:indianred">@Html.ValidationMessageFor(m => m.UserName)</span>
                 </div>
-
-                <div class="form-group" data-validate="Password is required">
-                    <span style="color:indianred">@Html.ValidationMessageFor(m => m.Password)</span>
+                <div class="mb-3" data-validate="Password is required">
                     <span class="">Password</span>
-                    @Html.PasswordFor(m => m.Password, new { @class = "input100", @placeholder = "Enter password" })
-                    <span></span>
-
+                    @Html.PasswordFor(m => m.Password, new { @class="form-control"})
+                    <span style="color:indianred">@Html.ValidationMessageFor(m => m.Password)</span>
                 </div>
-                <div>
-                    <button type="submit" value="Log in" class="btn btn-primary">
-                        Login
-                    </button>
+                <div class="mb-3">
+                        <button type="submit" value="Log in" class="btn btn-primary">
+                            Login
+                        </button>
                 </div>
             }
-        </section>
-        @*Login Form End*@
+        </div>
+            </div>
     </div>
-</div>
+    
 @*
 <div>
     <a asp-action="Index">Back to List</a>
@@ -68,3 +47,19 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<style>
+
+    .container-login {
+        /*min-height: 100vh;*/
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+    }
+
+
+</style>

@@ -1,4 +1,4 @@
-﻿@model S3Project.Entities.Visitor_Info
+﻿@model S3Project.Models.VisitorInfoViewModel
 
 @{
     ViewData["Title"] = "Visitor Information";
@@ -10,101 +10,81 @@
 <hr />
 
 <div class="row">
-    <form asp-action="Create">
+    @using (Html.BeginForm("Create", "VisitorInfo", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            {
+        @Html.HiddenFor(model => model.id)
     <div class="row">    
     <div class="col-md-6">        
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
-            <div class="form-group">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>            *@
+            <div class="mb-3">
                     <label>* Name</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                    @Html.TextBoxFor(m => m.Name, new { @class="form-control"})
+                    <span style="color:indianred">@Html.ValidationMessageFor(m => m.Name)</span>
+                @*<input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>*@
             </div>   
-            <div class="form-group">
+            <div class="mb-3">
                     <label>* Company Name</label>
-                <input asp-for="company_name" class="form-control" />
-                <span asp-validation-for="company_name" class="text-danger"></span>
+                    @Html.TextBoxFor(m => m.company_name, new { @class="form-control"})
+                    <span style="color:indianred">@Html.ValidationMessageFor(m => m.company_name)</span>
             </div>
-            <div class="form-group">
+                <div class="mb-3">
                     <label>* Business Number</label>
-                <input asp-for="mobile" class="form-control" />
-                <span asp-validation-for="mobile" class="text-danger"></span>
+                    @Html.TextBoxFor(m => m.mobile, new { @class="form-control"})
+                    <span style="color:indianred">@Html.ValidationMessageFor(m => m.mobile)</span>
             </div>
        
     </div>
     <div class="col-md-6">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
+                <div class="mb-3">
                     <label>* Business Email</label>
+                    @Html.TextBoxFor(m => m.email, new { @class="form-control"})
+                    <span style="color:indianred">@Html.ValidationMessageFor(m => m.email)</span>
                 @*<label asp-for="email" class="control-label"></label>*@
-                <input asp-for="email" class="form-control" />
-                <span asp-validation-for="email" class="text-danger"></span>
+                @*<input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>*@
             </div>
-            <div class="form-group">
+                <div class="mb-3">
                     <label>* Designation</label>
-                <input asp-for="designation" class="form-control" />
-                <span asp-validation-for="designation" class="text-danger"></span>
+                    @Html.TextBoxFor(m => m.designation, new { @class="form-control"})
             </div>
-            <div class="form-group">
+                <div class="mb-3">
                     <label>* License Plate</label>
-                <input asp-for="license_plate" class="form-control" />
-                <span asp-validation-for="license_plate" class="text-danger"></span>
+                    @Html.TextBoxFor(m => m.license_plate, new { @class="form-control"})
             </div>
     </div>
 
 </div>
     <div class="row">
         <div class="col-md-12">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                <div class="form-group">
+                <div class="mb-3">
                     <label>NRIC/FIN Number (last 4 character) *</label>
-                    <input asp-for="nric_fin" class="form-control" />
-                    <span asp-validation-for="nric_fin" class="text-danger"></span>
+                    @Html.TextBoxFor(m => m.nric_fin, new { @class="form-control"})
                 </div>
-                @*<div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="issh_notice" /> @Html.DisplayNameFor(model => model.issh_notice)
-                    </label>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="isclose_contact" /> @Html.DisplayNameFor(model => model.isclose_contact)
-                    </label>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="isfever" /> @Html.DisplayNameFor(model => model.isfever)
-                    </label>
-                </div>*@
-                <div class="form-row">
+                <div class="mb-3">
                     <label>1. Are you currently under a Quarantine Order, Stay-Home Notice?</label>
                     <div class="input-group">
-                        @Html.RadioButtonFor(m => m.isclose_contact, true) &nbsp; Yes &nbsp; &nbsp;
-                        @Html.RadioButtonFor(m => m.isclose_contact, false) &nbsp; No
-                        @*@Html.RadioButtonFor(m => m.isclose_contact, true, Model.isclose_contact == true ? new { Checked = "checked" } : null) &nbsp; ကြိုတင် &nbsp; &nbsp;
-                        @Html.RadioButtonFor(m => m.isclose_contact, false, Model.isclose_contact == false ? new { Checked = "checked" } : null) &nbsp; တုံ့ပြန်*@
+                        @Html.RadioButtonFor(m => m.issh_notice, true) &nbsp; Yes &nbsp; &nbsp;
+                        @Html.RadioButtonFor(m => m.issh_notice, false) &nbsp; No
+                        @*@Html.RadioButtonFor(m => m.isclose_contact, true, Model.isclose_contact == true ? new { Checked = "checked" } : null) &nbsp; Yes &nbsp; &nbsp;
+                        @Html.RadioButtonFor(m => m.isclose_contact, false, Model.isclose_contact == false ? new { Checked = "checked" } : null) &nbsp; No*@
                     </div>
                 </div>
-                <div class="form-row">
+                <div class="mb-3">
                     <label>2. Have you had close contact with a confirmed COVID-19 case in the past 14 day?</label>
                     <div class="input-group">
                         @Html.RadioButtonFor(m => m.isclose_contact, true) &nbsp; Yes &nbsp; &nbsp;
                         @Html.RadioButtonFor(m => m.isclose_contact, false) &nbsp; No
-                        @*@Html.RadioButtonFor(m => m.isclose_contact, true, Model.isclose_contact == true ? new { Checked = "checked" } : null) &nbsp; ကြိုတင် &nbsp; &nbsp;
-                        @Html.RadioButtonFor(m => m.isclose_contact, false, Model.isclose_contact == false ? new { Checked = "checked" } : null) &nbsp; တုံ့ပြန်*@
                     </div>
                 </div>
-                <div class="form-row">
+                <div class="mb-3">
                     <label>3. Do you have any fever or flu-like symptoms?</label>
                     <div class="input-group">
-                        @Html.RadioButtonFor(m => m.isclose_contact, true) &nbsp; Yes &nbsp; &nbsp;
-                        @Html.RadioButtonFor(m => m.isclose_contact, false) &nbsp; No
-                        @*@Html.RadioButtonFor(m => m.isclose_contact, true, Model.isclose_contact == true ? new { Checked = "checked" } : null) &nbsp; ကြိုတင် &nbsp; &nbsp;
-                        @Html.RadioButtonFor(m => m.isclose_contact, false, Model.isclose_contact == false ? new { Checked = "checked" } : null) &nbsp; တုံ့ပြန်*@
+                        @Html.RadioButtonFor(m => m.isfever, true) &nbsp; Yes &nbsp; &nbsp;
+                        @Html.RadioButtonFor(m => m.isfever, false) &nbsp; No
                     </div>
                 </div>
-                <div class="form-group form-check">
+                <div class="mb-3 form-group form-check">
                     <label class="form-check-label">
                         <input class="form-check-input" asp-for="isclose_contact" /> By Completing this online form, I acknowledge and consent to the collection,
                         use and disclosure of my personal data for security verification, access control and safety purpose.
@@ -120,7 +100,8 @@
         </div>
 
 </div>
-    </form>
+    
+    }
 </div>
 
 

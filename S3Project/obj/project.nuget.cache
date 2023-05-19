@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "oDuxR6YwIoCluc+/i0kkNQII66fpx/eIZ6MU4cbyq/PPlxmVOb10sSlczX3kkfo6eOw9S1mFLyEJmPSCc1THxg==",
+  "dgSpecHash": "HD8wpLp9w8e8Xu00ZC6g5LtfixQo+8uCqHiDC6fIMA1K/86DsoBJonn7T/vBsTv2/q6JvPxVBsNUOaIzTKT3yg==",
   "success": true,
-  "projectFilePath": "D:\\ymo\\S3_\\S3Project\\S3Project\\S3Project.csproj",
+  "projectFilePath": "D:\\ymo\\S3_Project\\S3Project\\S3Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\htayh\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\htayh\\.nuget\\packages\\log4net\\2.0.15\\log4net.2.0.15.nupkg.sha512",
     "C:\\Users\\htayh\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\htayh\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\htayh\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",

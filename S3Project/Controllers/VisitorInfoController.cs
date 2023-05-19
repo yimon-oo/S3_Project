@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using S3Project.Entities;
 using S3Project.IRepository;
+using S3Project.Logging;
 using S3Project.Mappers;
 using S3Project.Models;
 using S3Project.Utilities;
+using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
 
@@ -13,13 +15,13 @@ namespace S3Project.Controllers
 {
     public class VisitorInfoController : Controller
     {
-        private readonly ILogger<VisitorInfoController> _logger;
+        Logger logger;
         IVisitorInfoRepository visitorInfoRepo;
         VisitorInfoMapper mapper;
 
-        public VisitorInfoController(ILogger<VisitorInfoController> logger, IVisitorInfoRepository _visitorInfoRepo)
+        public VisitorInfoController(IVisitorInfoRepository _visitorInfoRepo)
         {
-            this._logger = logger;
+            this.logger = new Logger(typeof(VisitorInfoController));
             this.visitorInfoRepo = _visitorInfoRepo;
             this.mapper = new VisitorInfoMapper();
         }
@@ -34,10 +36,9 @@ namespace S3Project.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
+                logger.LogError(ex.Message, ex);
                 return View(new { message = ex.Message });
             }
-            return View();
         }
 
         List<VisitorInfoListViewModel> GetAllData()
@@ -65,28 +66,32 @@ namespace S3Project.Controllers
                 int result = 0;
                 if (model.id > 0)
                 {
-                    visitor_Info = visitorInfoRepo.Get(model.id);
-                    visitor_Info.id = model.id;
+                    visitor_Info = visitorInfoRepo.Get(model.id);                    
                     visitor_Info = mapper.MapModeltoEntity(model);
+                    visitor_Info.id = model.id;
                     result = visitorInfoRepo.CreateOrUpdate(visitor_Info);
                 }
                 else
                 {
-                    visitor_Info = mapper.MapModeltoEntity(model);
                     visitor_Info = mapper.MapModeltoEntity(model);
                     result = visitorInfoRepo.CreateOrUpdate(visitor_Info);
                 }
                 if (result == 1)
                 {
-                    return Json(new { message = Constants.SAVE_SUCCESS_MESSAGE });
+                    //return Json(new { message = Constants.SAVE_SUCCESS_MESSAGE });
+                    List<VisitorInfoListViewModel> list = new List<VisitorInfoListViewModel>();
+                    list = GetAllData();
+                    return View("Index", list);
                 }
                 else
                 {
-                    return Json(new { message = Constants.Unsuccess_MESSAGE });
+                    //return Json(new { message = Constants.Unsuccess_MESSAGE });
+                    return View("Create");
                 }
             }
             catch (Exception ex)
             {
+                logger.LogError(ex.Message, ex);
                 return Json(new { message = ex.Message });
             }
         }
@@ -102,12 +107,14 @@ namespace S3Project.Controllers
                 {
                     Visitor_Info visitorinfo=visitorInfoRepo.Get(id);
                     ViewBag.VisitorInfoID = id;
-                    return View("Create", visitorinfo);
+                    VisitorInfoViewModel model = mapper.MapEntityToModel(visitorinfo);
+                    return View("Create", model);
                 }
                 return RedirectToAction("Create", "VisitorInfo", new { isModel = false });
             }
             catch (Exception ex)
             {
+                logger.LogError(ex.Message, ex);
                 return Json(new { message = ex.Message });
             }
             
@@ -122,7 +129,9 @@ namespace S3Project.Controllers
         {
             Visitor_Info visitor_Info = new Visitor_Info();
             var result = visitorInfoRepo.Delete(id);
-            return View("Index", visitor_Info);
+            List<VisitorInfoListViewModel> list= new List<VisitorInfoListViewModel>();
+            list = GetAllData();
+            return View("Index", list);
         }
 
         #endregion

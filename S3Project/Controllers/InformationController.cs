@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using S3Project.Entities;
 using S3Project.IRepository;
+using S3Project.Logging;
 using S3Project.Models;
 using S3Project.Utilities;
 using System.Globalization;
@@ -12,11 +13,11 @@ namespace S3Project.Controllers
     [ApiController]
     public class InformationController : Controller
     {
-        private readonly ILogger<InformationController> _logger;
+        Logger logger;
         IDataRepository dataRepo;
-        public InformationController(ILogger<InformationController> logger, IDataRepository _dataRepo)
+        public InformationController(IDataRepository _dataRepo)
         {
-            _logger = logger;
+            this.logger = new Logger(typeof(VisitorInfoController));
             this.dataRepo = _dataRepo;
         }
 
@@ -61,7 +62,7 @@ namespace S3Project.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
+                logger.LogError(ex.Message, ex);
                 return Json(new { message = ex.Message });
             }
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ymo\\S3_\\S3Project\\S3Project\\S3Project.csproj": {}
+    "D:\\ymo\\S3_Project\\S3Project\\S3Project.csproj": {}
   },
   "projects": {
-    "D:\\ymo\\S3_\\S3Project\\S3Project\\S3Project.csproj": {
+    "D:\\ymo\\S3_Project\\S3Project\\S3Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ymo\\S3_\\S3Project\\S3Project\\S3Project.csproj",
+        "projectUniqueName": "D:\\ymo\\S3_Project\\S3Project\\S3Project.csproj",
         "projectName": "S3Project",
-        "projectPath": "D:\\ymo\\S3_\\S3Project\\S3Project\\S3Project.csproj",
+        "projectPath": "D:\\ymo\\S3_Project\\S3Project\\S3Project.csproj",
         "packagesPath": "C:\\Users\\htayh\\.nuget\\packages\\",
-        "outputPath": "D:\\ymo\\S3_\\S3Project\\S3Project\\obj\\",
+        "outputPath": "D:\\ymo\\S3_Project\\S3Project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\htayh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -57,6 +57,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.13, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[2.0.15, )"
             }
           },
           "imports": [
